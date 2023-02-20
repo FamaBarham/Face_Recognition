@@ -54,7 +54,7 @@ def saveUser():
 def searchUser():
     path_projet = 'C:\\Users\\ass_s\\Face_Recognition'
     data = request.get_json()
-    #nameUser = data.get('nameUser')
+    nameUser = data.get('nameUser')
     photoInconnu = data.get('photoInconnu')
      # Set the path for the new directory
     directory = path_projet +'\\' + 'Searchs'
