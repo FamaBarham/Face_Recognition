@@ -14,6 +14,9 @@ CORS(app)
 def hello_world():
     return f"<p>{train_classifier('fama')}</p>"
 
+
+
+
 @app.route("/searchPerson")
 def search():
     return f"<p>{predict('fama')}</p>"
