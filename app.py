@@ -8,10 +8,10 @@ import os
 import os.path
 from os import path
 
-x = 0
+y = 0
 def add_photo():
-  global x
-  x = x + 1
+  global y
+  y = y + 1
   
 app = Flask(__name__)
 CORS(app)
@@ -39,12 +39,13 @@ def saveUser():
          os.makedirs(directory)
          
 
+     for x in photoUser:
+        photo_data = base64.b64decode(x)
+     
+        add_photo();
     
-     photo_data = base64.b64decode(photoUser)
-     add_photo()
-    
-     with open(directory+"/photo"+str(x)+".png", "wb") as file:
-        file.write(photo_data)
+        with open(directory+"/photo"+str(y)+".png", "wb") as file:
+            file.write(photo_data)
     
      return f"Name: {nameUser}, Photo: {'saved'}"
 
