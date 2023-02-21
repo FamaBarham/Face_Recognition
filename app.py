@@ -46,6 +46,8 @@ def saveUser():
     
         with open(directory+"/photo"+str(y)+".png", "wb") as file:
             file.write(photo_data)
+
+    # train_classifier(nameUser)
     
     return f"Name: {nameUser}, Photo: {'saved'}"
 
@@ -66,9 +68,9 @@ def searchUser():
 
     confidence = predict(nameUser)
     if(confidence>=50):
-        return str(confidence)
+        return True
     else:
-        return "Cette personne n'est pas"+ nameUser
+        return False
 
     
 
