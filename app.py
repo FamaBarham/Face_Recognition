@@ -19,9 +19,9 @@ def add_photo():
   y = y + 1
   
 
-@app.route("/")
-def hello_world():
-    return train_classifier("fama")
+# @app.route("/")
+# def hello_world():
+#     return train_classifier("fama")
 
 
 @app.route("/saveUser", methods=['POST'])
@@ -32,7 +32,8 @@ def saveUser():
     nameUser = data.get('nameUser')
     photoUser = data.get('photoUser')
      # Set the path for the new directory
-    directory = path_projet +'\\' + nameUser
+    directory = os.path.join(os.getcwd()+ "/" + nameUser)
+    
    
      #Condition pour créer un directory
     if(path.isdir(directory) == False):
@@ -47,8 +48,7 @@ def saveUser():
         with open(directory+"/photo"+str(y)+".png", "wb") as file:
             file.write(photo_data)
 
-    # train_classifier(nameUser)
-    
+    train_classifier(nameUser)
     return f"Name: {nameUser}, Photo: {'saved'}"
 
 
