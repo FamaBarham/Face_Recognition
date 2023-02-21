@@ -34,7 +34,7 @@ def predict(name):
         classifierPath = os.path.join(os.getcwd()+"/ModelsMachineLearning/"+name+"_classifier.xml")
         recognizer = cv.face.LBPHFaceRecognizer_create()
         recognizer.read(classifierPath)
-        imgpath = os.path.join(os.getcwd()+"/searchs/inconnu.jpeg")
+        imgpath = os.path.join(os.getcwd()+"/searchs/inconnu.png")
         img = Image.open(imgpath).convert('L')
         imageNp = np.array(img, 'uint8')
         id,confidence = recognizer.predict(imageNp)

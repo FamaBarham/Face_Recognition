@@ -7,6 +7,7 @@ from flask_cors import CORS
 import os
 import os.path
 from os import path
+from functions import predict, train_classifier
 
   
 app = Flask(__name__)
@@ -20,7 +21,7 @@ def add_photo():
 
 @app.route("/")
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return train_classifier("fama")
 
 
 @app.route("/saveUser", methods=['POST'])
@@ -52,26 +53,24 @@ def saveUser():
 
 @app.route("/searchUser", methods=['POST'])
 def searchUser():
-    path_projet = os.path.join(os.getcwd())
+    directory = os.path.join(os.getcwd()+ "/searchs")
     data = request.get_json()
     nameUser = data.get('nameUser')
     photoInconnu = data.get('photoInconnu')
-     # Set the path for the new directory
-    directory = path_projet +'\\' + 'searchs'
-         #Condition pour créer un directory
-    if(path.isdir(directory) == False):
-          # Use makedirs() to create the directory
-         os.makedirs(directory)
     
     photo_data = base64.b64decode(photoInconnu)
      
     
     with open(directory+"/inconnu.png", "wb") as file:
         file.write(photo_data)
-        
-    return directory
 
-    # f"Photo: {'success'}"
+    confidence = predict(nameUser)
+    if(confidence>=50):
+        return str(confidence)
+    else:
+        return "Cette personne n'est pas"+ nameUser
+
+    
 
 
 # # Cette liste contient la liste des noms de fichiers
