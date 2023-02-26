@@ -19,9 +19,9 @@ def add_photo():
   y = y + 1
   
 
-# @app.route("/")
-# def hello_world():
-#     return train_classifier("fama")
+@app.route("/")
+def hello_world():
+    return train_classifier("fama")
 
 
 @app.route("/saveUser", methods=['POST'])
@@ -68,9 +68,9 @@ def searchUser():
 
     confidence = predict(nameUser)
     if(confidence>=50):
-        return True
+        return "True"
     else:
-        return False
+        return "False"
 
     
 
